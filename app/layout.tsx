@@ -10,7 +10,7 @@ const instrumentSans = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Ankit Portfolio (Beta)",
   description: "Personal Portfolio",
 };
 
