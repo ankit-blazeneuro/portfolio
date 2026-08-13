@@ -29,10 +29,10 @@ const JUPITER_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/
 
 export default function JupiterSection() {
   return (
-    <section className="relative z-10 w-full max-w-7xl mx-auto pt-10 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 grid grid-cols-1 md:grid-cols-12 items-center gap-10 sm:gap-16 lg:gap-24 text-left px-4 sm:px-8 lg:px-12">
+    <section className="relative z-10 w-full max-w-7xl mx-auto pt-8 sm:pt-16 lg:pt-24 pb-6 sm:pb-12 grid grid-cols-1 md:grid-cols-12 items-center gap-8 sm:gap-12 md:gap-10 lg:gap-16 xl:gap-24 text-left px-3.5 sm:px-8 lg:px-12">
       {/* Left Side: 3D ASCII Jupiter Object */}
       <div className="md:col-span-6 lg:col-span-5 flex flex-col items-center md:items-start justify-center shrink-0 w-full">
-        <div className="w-60 h-60 xs:w-72 xs:h-72 sm:w-88 sm:h-88 md:w-[440px] md:h-[440px] lg:w-[500px] lg:h-[500px] max-w-full flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing select-none">
+        <div className="w-[220px] h-[220px] xs:w-[270px] xs:h-[270px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] max-w-full aspect-square flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing select-none mx-auto md:mx-0">
           <AsciiObject 
             src="jupiter" 
             autoRotate 
@@ -47,35 +47,35 @@ export default function JupiterSection() {
       </div>
 
       {/* Right Side: Text Content using Space Mono font */}
-      <div className="md:col-span-6 lg:col-span-6 lg:col-start-7 flex flex-col items-start justify-center space-y-4 sm:space-y-5 text-left font-space-mono w-full">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs text-zinc-400 font-space-mono">
+      <div className="md:col-span-6 lg:col-span-6 lg:col-start-7 flex flex-col items-start justify-center space-y-3.5 sm:space-y-5 text-left font-space-mono w-full">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-[11px] sm:text-xs text-zinc-400 font-space-mono">
           <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
           Cosmic Perspective
         </div>
 
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-white font-space-mono">
+        <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-white font-space-mono">
           Navigating the Digital Cosmos
         </h2>
 
-        <p className="text-zinc-400 text-sm sm:text-base leading-relaxed font-space-mono">
+        <p className="text-zinc-400 text-xs sm:text-base leading-relaxed font-space-mono">
           Like Jupiter&apos;s gravitational presence, great software brings complex ideas together into seamless, high-performance digital experiences.
         </p>
 
-        <div className="space-y-3 pt-2 text-zinc-300 font-space-mono">
-          <div className="flex items-start gap-3">
-            <span className="text-amber-500 font-space-mono text-sm mt-0.5">01 //</span>
+        <div className="space-y-3 pt-1 sm:pt-2 text-zinc-300 font-space-mono w-full">
+          <div className="flex items-start gap-2.5 sm:gap-3">
+            <span className="text-amber-500 font-space-mono text-xs sm:text-sm mt-0.5 shrink-0">01 //</span>
             <p className="text-xs sm:text-sm text-zinc-300 font-space-mono">
               <strong className="text-white font-medium">Scalable Architecture:</strong> Building robust full-stack applications with clean logic and efficiency.
             </p>
           </div>
-          <div className="flex items-start gap-3">
-            <span className="text-amber-500 font-space-mono text-sm mt-0.5">02 //</span>
+          <div className="flex items-start gap-2.5 sm:gap-3">
+            <span className="text-amber-500 font-space-mono text-xs sm:text-sm mt-0.5 shrink-0">02 //</span>
             <p className="text-xs sm:text-sm text-zinc-300 font-space-mono">
               <strong className="text-white font-medium">Interactive Visuals:</strong> Merging ASCII art, WebGL 3D graphics, and responsive web design.
             </p>
           </div>
-          <div className="flex items-start gap-3">
-            <span className="text-amber-500 font-space-mono text-sm mt-0.5">03 //</span>
+          <div className="flex items-start gap-2.5 sm:gap-3">
+            <span className="text-amber-500 font-space-mono text-xs sm:text-sm mt-0.5 shrink-0">03 //</span>
             <p className="text-xs sm:text-sm text-zinc-300 font-space-mono">
               <strong className="text-white font-medium">Continuous Innovation:</strong> Thinking beyond limits to engineer next-generation web products.
             </p>
@@ -83,11 +83,11 @@ export default function JupiterSection() {
         </div>
 
         {/* Tech Stack Tags */}
-        <div className="flex flex-wrap gap-2 pt-4">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-3 sm:pt-4">
           {["Next.js", "TypeScript", "Three.js", "React", "Tailwind CSS"].map((tech) => (
             <span 
               key={tech}
-              className="px-3 py-1 text-xs font-space-mono rounded-full bg-zinc-900 text-zinc-300 border border-zinc-800"
+              className="px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-space-mono rounded-full bg-zinc-900 text-zinc-300 border border-zinc-800"
             >
               {tech}
             </span>
