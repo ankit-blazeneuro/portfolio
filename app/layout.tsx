@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans } from "next/font/google";
+import { Instrument_Sans, Space_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
@@ -9,8 +9,15 @@ const instrumentSans = Instrument_Sans({
   display: "swap",
 });
 
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Ankit Portfolio (Beta)",
+  title: "Ankit's Portfolio (Beta)",
   description: "Personal Portfolio",
 };
 
@@ -22,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} h-full antialiased dark`}
+      className={`${instrumentSans.variable} ${spaceMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-black text-white font-sans">
         <Navbar />

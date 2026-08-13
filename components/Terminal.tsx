@@ -65,11 +65,14 @@ export default function TerminalComponent() {
           if (cmd === "help") {
             term.writeln("Available commands:");
             term.writeln("  ascii    - Render 3D ASCII Object");
+            term.writeln("  jupiter  - Render 3D Jupiter Model Info");
             term.writeln("  about    - Developer profile");
             term.writeln("  skills   - Tech stack & tools");
             term.writeln("  clear    - Clear terminal screen");
           } else if (cmd === "ascii") {
             term.writeln("  [ 3D Dollar ASCII Object Active ]");
+          } else if (cmd === "jupiter") {
+            term.writeln("  [ 3D Jupiter ASCII Object Active Below Terminal ]");
           } else if (cmd === "about") {
             term.writeln("Full-Stack Developer building modern web experiences.");
           } else if (cmd === "skills") {
@@ -150,7 +153,10 @@ export default function TerminalComponent() {
       {/* Terminal Viewport Container */}
       <div className="p-4 bg-black flex flex-col items-center">
         {/* BlazeNeuro ASCII Text Banner */}
-        <pre className="font-mono text-[8px] sm:text-xs text-white leading-none overflow-hidden text-center select-none w-full my-2">
+        <pre 
+          className="text-[6.5px] xs:text-[8px] sm:text-xs text-white leading-none overflow-x-auto text-center select-none w-full my-2"
+          style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
+        >
 {`  ██████╗ ██╗      █████╗ ███████╗███████╗███╗   ██╗███████╗██╗    ██╗██████╗  ██████╗ 
   ██╔══██╗██║     ██╔══██╗╚══███╔╝██╔════╝████╗  ██║██╔════╝██║    ██║██╔══██╗██╔═══██╗
   ██████╔╝██║     ███████║  ███╔╝ █████╗  ██╔██╗ ██║█████╗  ██║    ██║██████╔╝██║   ██║
@@ -160,21 +166,21 @@ export default function TerminalComponent() {
         </pre>
 
         {/* 3D AsciiObject Canvas - 3D Dollar ($) Sign */}
-        <div className="w-36 h-36 my-2 flex items-center justify-center pointer-events-none select-none">
+        <div className="w-28 h-28 sm:w-36 sm:h-36 my-2 flex items-center justify-center pointer-events-none select-none">
           <AsciiObject 
             src={DOLLAR_LOGO_SVG} 
             autoRotate 
             ascii={true} 
             cellSize={8} 
             scale={2.5}
-            className="w-36 h-36"
+            className="w-28 h-28 sm:w-36 sm:h-36"
           />
         </div>
 
         {/* Terminal CLI Output Viewport */}
         <div 
           ref={terminalRef} 
-          className="w-full h-[220px] text-left mt-2 cursor-text" 
+          className="w-full h-[180px] sm:h-[220px] text-left mt-2 cursor-text overflow-x-auto" 
         />
       </div>
     </div>

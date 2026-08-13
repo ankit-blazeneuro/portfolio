@@ -879,6 +879,123 @@ function createImageObject(
   return new THREE.Mesh(geometry, material);
 }
 
+function createJupiter3DModel(anisotropy: number): THREE.Group {
+  const group = new THREE.Group();
+
+  const width = 1024;
+  const height = 512;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+
+  if (ctx) {
+    ctx.fillStyle = "#d4a373";
+    ctx.fillRect(0, 0, width, height);
+
+    const bands = [
+      { y: 0.00, h: 0.12, color: "#a88b70" },
+      { y: 0.12, h: 0.08, color: "#d9c5b2" },
+      { y: 0.20, h: 0.07, color: "#8c5a3c" },
+      { y: 0.27, h: 0.10, color: "#f0e6df" },
+      { y: 0.37, h: 0.12, color: "#7a3b1e" },
+      { y: 0.49, h: 0.06, color: "#ffffff" },
+      { y: 0.55, h: 0.12, color: "#6b3318" },
+      { y: 0.67, h: 0.09, color: "#e8dcd5" },
+      { y: 0.76, h: 0.08, color: "#8c5235" },
+      { y: 0.84, h: 0.16, color: "#826b58" },
+    ];
+
+    for (const b of bands) {
+      const yPix = b.y * height;
+      const hPix = b.h * height;
+      ctx.fillStyle = b.color;
+      ctx.fillRect(0, yPix, width, hPix);
+
+      ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+      for (let i = 0; i < 4; i++) {
+        const lineY = yPix + (i / 4) * hPix;
+        ctx.beginPath();
+        ctx.moveTo(0, lineY);
+        for (let x = 0; x <= width; x += 20) {
+          ctx.lineTo(x, lineY + Math.sin(x * 0.02 + i) * 3);
+        }
+        ctx.lineTo(width, yPix + hPix);
+        ctx.lineTo(0, yPix + hPix);
+        ctx.fill();
+      }
+    }
+
+    const spotX = width * 0.62;
+    const spotY = height * 0.62;
+    const spotRx = 52;
+    const spotRy = 30;
+
+    const spotGrad = ctx.createRadialGradient(spotX, spotY, 5, spotX, spotY, spotRx);
+    spotGrad.addColorStop(0, "#e63946");
+    spotGrad.addColorStop(0.5, "#d9411e");
+    spotGrad.addColorStop(1, "rgba(217, 65, 30, 0)");
+
+    ctx.fillStyle = spotGrad;
+    ctx.beginPath();
+    ctx.ellipse(spotX, spotY, spotRx, spotRy, -0.08, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#ff5964";
+    ctx.beginPath();
+    ctx.ellipse(spotX, spotY, spotRx * 0.45, spotRy * 0.45, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const planetTexture = new THREE.CanvasTexture(canvas);
+  planetTexture.colorSpace = THREE.SRGBColorSpace;
+  planetTexture.anisotropy = anisotropy;
+
+  const sphereGeo = new THREE.SphereGeometry(1.6, 64, 64);
+  const sphereMat = new THREE.MeshStandardMaterial({
+    map: planetTexture,
+    roughness: 0.5,
+    metalness: 0.1,
+  });
+  const planetMesh = new THREE.Mesh(sphereGeo, sphereMat);
+  group.add(planetMesh);
+
+  const ringGeo = new THREE.RingGeometry(2.1, 3.3, 128);
+
+  const ringCanvas = document.createElement("canvas");
+  ringCanvas.width = 512;
+  ringCanvas.height = 1;
+  const ringCtx = ringCanvas.getContext("2d");
+  if (ringCtx) {
+    const ringGrad = ringCtx.createLinearGradient(0, 0, 512, 0);
+    ringGrad.addColorStop(0.0, "rgba(255, 255, 255, 0.0)");
+    ringGrad.addColorStop(0.15, "rgba(255, 240, 220, 0.7)");
+    ringGrad.addColorStop(0.45, "rgba(220, 190, 160, 0.9)");
+    ringGrad.addColorStop(0.55, "rgba(80, 60, 40, 0.2)");
+    ringGrad.addColorStop(0.7, "rgba(240, 210, 180, 0.8)");
+    ringGrad.addColorStop(0.9, "rgba(180, 150, 120, 0.4)");
+    ringGrad.addColorStop(1.0, "rgba(255, 255, 255, 0.0)");
+    ringCtx.fillStyle = ringGrad;
+    ringCtx.fillRect(0, 0, 512, 1);
+  }
+  const ringTexture = new THREE.CanvasTexture(ringCanvas);
+  ringTexture.colorSpace = THREE.SRGBColorSpace;
+
+  const ringMat = new THREE.MeshStandardMaterial({
+    map: ringTexture,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.9,
+    roughness: 0.3,
+  });
+  const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+  ringMesh.rotation.x = Math.PI / 2 + 0.35;
+  ringMesh.rotation.y = -0.15;
+  group.add(ringMesh);
+
+  return group;
+}
+
 function disposeObject(root: THREE.Object3D) {
   root.traverse((node) => {
     const mesh = node as THREE.Mesh;
@@ -1157,6 +1274,11 @@ export function createAsciiObject(
     const token = ++loadToken;
     if (!src) {
       clearModel();
+      return;
+    }
+    if (src === "jupiter") {
+      adoptModel(createJupiter3DModel(renderer.capabilities.getMaxAnisotropy()));
+      config.onLoad?.();
       return;
     }
     try {
