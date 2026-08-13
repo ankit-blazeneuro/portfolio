@@ -5,8 +5,8 @@ import Terminal from "@/components/Terminal";
 import JupiterSection from "@/components/JupiterSection";
 import Footer from "@/components/Footer";
 import BackgroundDecoration from "@/components/BackgroundDecoration";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import Glitch from "@/components/Glitch";
+
 
 export default function Home() {
   const [isGlitching, setIsGlitching] = useState(false);
@@ -98,11 +98,11 @@ export default function Home() {
 
   // Home Page Content (Normal or 2-Second WebGL Glitch active)
   const homeContent = (
-    <ScrollArea className="h-[100dvh] w-full">
-      <main className="relative flex min-h-[calc(100dvh-80px)] flex-col items-center justify-center pt-20 xs:pt-24 sm:pt-36 md:pt-44 lg:pt-52 pb-6 px-3 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-10 md:space-y-12 overflow-hidden">
+    <div className="w-full min-h-screen overflow-x-hidden flex flex-col items-center">
+      <main className="relative flex min-h-[calc(100vh-80px)] w-full max-w-full flex-col items-center justify-center pt-20 xs:pt-24 sm:pt-36 md:pt-44 lg:pt-52 pb-6 px-3 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-10 md:space-y-12 overflow-x-hidden">
         {/* Background Graphic starting from left edge of screen */}
         <div className="absolute left-0 top-24 sm:top-48 lg:top-64 w-full pointer-events-none z-0 flex justify-start opacity-70 sm:opacity-80 overflow-hidden max-w-full">
-          <BackgroundDecoration className="w-[800px] sm:w-[1150px] lg:w-[1450px] max-w-none h-auto shrink-0" />
+          <BackgroundDecoration className="w-[800px] sm:w-[1150px] lg:w-[1450px] max-w-full sm:max-w-none h-auto shrink-0" />
         </div>
 
         {/* Header Container */}
@@ -126,8 +126,9 @@ export default function Home() {
         {/* Footer with Space Mono font */}
         <Footer />
       </main>
-    </ScrollArea>
+    </div>
   );
+
 
   // If portal is triggered, wrap the ACTUAL LIVE HOME PAGE in WebGL Glitch for 2 seconds
   if (isGlitching) {

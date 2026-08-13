@@ -29,10 +29,11 @@ const JUPITER_LOGO_SVG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/
 
 export default function JupiterSection() {
   return (
-    <section className="relative z-10 w-full max-w-7xl mx-auto pt-8 sm:pt-16 lg:pt-24 pb-6 sm:pb-12 grid grid-cols-1 md:grid-cols-12 items-center gap-8 sm:gap-12 md:gap-10 lg:gap-16 xl:gap-24 text-left px-3.5 sm:px-8 lg:px-12">
+    <section className="relative z-10 w-full max-w-7xl mx-auto pt-8 sm:pt-16 lg:pt-24 pb-6 sm:pb-12 grid grid-cols-1 md:grid-cols-12 items-center gap-8 sm:gap-12 md:gap-10 lg:gap-16 xl:gap-24 text-left px-3.5 sm:px-8 lg:px-12 overflow-hidden max-w-full">
       {/* Left Side: 3D ASCII Jupiter Object */}
-      <div className="md:col-span-6 lg:col-span-5 flex flex-col items-center md:items-start justify-center shrink-0 w-full">
-        <div className="w-[220px] h-[220px] xs:w-[270px] xs:h-[270px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] max-w-full aspect-square flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing select-none mx-auto md:mx-0">
+      <div className="md:col-span-6 lg:col-span-5 flex flex-col items-center md:items-start justify-center shrink-0 w-full max-w-full overflow-hidden">
+        <div className="w-[200px] h-[200px] xs:w-[260px] xs:h-[260px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] max-w-full aspect-square flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing select-none mx-auto md:mx-0">
+
           <AsciiObject 
             src="jupiter" 
             autoRotate 

@@ -19,6 +19,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -27,8 +29,24 @@ body {
   font-family: var(--font-instrument-sans), system-ui, sans-serif;
   overflow-x: hidden;
   width: 100%;
+  max-width: 100vw;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Responsive safety overrides */
+canvas, svg, iframe, video, img {
+  max-width: 100%;
+}
+
+[data-radix-scroll-area-viewport] {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+}
+
+[data-radix-scroll-area-viewport] > div {
+  max-width: 100vw;
+}
+
 
 /* Custom Shadcn Dark Scrollbar */
 ::-webkit-scrollbar {

@@ -188,11 +188,11 @@ export default function TerminalComponent({ onPortalTrigger }: TerminalProps) {
         </div>
 
         {/* Terminal Viewport Container */}
-        <div className="p-2.5 xs:p-3 sm:p-4 bg-black flex flex-col items-center overflow-hidden">
+        <div className="p-2.5 xs:p-3 sm:p-4 bg-black flex flex-col items-center overflow-hidden max-w-full">
           {/* BlazeNeuro ASCII Text Banner with smooth horizontal scale on smaller screens */}
-          <div className="w-full overflow-hidden flex justify-center items-center py-1 select-none">
+          <div className="w-full overflow-x-auto overflow-y-hidden flex justify-center items-center py-1 select-none max-w-full">
             <pre 
-              className="text-[4.8px] min-[360px]:text-[5.8px] xs:text-[7.5px] sm:text-xs text-white leading-none text-center font-mono tracking-tighter sm:tracking-normal shrink-0"
+              className="text-[3.8px] min-[340px]:text-[4.5px] min-[380px]:text-[5.8px] xs:text-[7.5px] sm:text-xs text-white leading-none text-center font-mono tracking-tighter sm:tracking-normal shrink-0 max-w-full"
               style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
             >
 {`  ██████╗ ██╗      █████╗ ███████╗███████╗███╗   ██╗███████╗██╗    ██╗██████╗  ██████╗ 
@@ -205,23 +205,24 @@ export default function TerminalComponent({ onPortalTrigger }: TerminalProps) {
           </div>
 
           {/* 3D AsciiObject Canvas - 3D Dollar ($) Sign */}
-          <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 my-1 sm:my-2 flex items-center justify-center pointer-events-none select-none">
+          <div className="w-20 h-20 xs:w-24 xs:h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 my-1 sm:my-2 flex items-center justify-center pointer-events-none select-none max-w-full">
             <AsciiObject 
               src={DOLLAR_LOGO_SVG} 
               autoRotate 
               ascii={true} 
               cellSize={8} 
               scale={2.5}
-              className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36"
+              className="w-20 h-20 xs:w-24 xs:h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 max-w-full"
             />
           </div>
 
           {/* Terminal CLI Output Viewport */}
           <div 
             ref={terminalRef} 
-            className="w-full h-[170px] xs:h-[190px] sm:h-[220px] text-left mt-1 sm:mt-2 cursor-text overflow-x-auto" 
+            className="w-full max-w-full h-[170px] xs:h-[190px] sm:h-[220px] text-left mt-1 sm:mt-2 cursor-text overflow-x-auto overflow-y-hidden" 
           />
         </div>
+
       </div>
 
       {/* Genie Summoned Resume Window */}

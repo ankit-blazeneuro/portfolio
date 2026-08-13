@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Space_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
@@ -21,6 +21,12 @@ export const metadata: Metadata = {
   description: "Personal Portfolio",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,12 +35,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${spaceMono.variable} h-full antialiased dark`}
+      className={`${instrumentSans.variable} ${spaceMono.variable} h-full antialiased dark overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col bg-black text-white font-sans">
+      <body className="min-h-full flex flex-col bg-black text-white font-sans overflow-x-hidden max-w-full w-full">
         <Navbar />
         {children}
       </body>
     </html>
   );
 }
+
