@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Terminal from "@/components/Terminal";
 import JupiterSection from "@/components/JupiterSection";
+import ProjectsSection from "@/components/ProjectsSection";
 import Footer from "@/components/Footer";
 import BackgroundDecoration from "@/components/BackgroundDecoration";
 import Glitch from "@/components/Glitch";
@@ -122,6 +123,9 @@ export default function Home() {
 
         {/* 3D ASCII Jupiter Section below Terminal */}
         <JupiterSection />
+
+        {/* GitHub Pinned Projects Section below Cosmic Perspective */}
+        <ProjectsSection />
 
         {/* Footer with Space Mono font */}
         <Footer />

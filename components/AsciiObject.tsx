@@ -951,7 +951,7 @@ function createJupiter3DModel(anisotropy: number): THREE.Group {
   planetTexture.colorSpace = THREE.SRGBColorSpace;
   planetTexture.anisotropy = anisotropy;
 
-  const sphereGeo = new THREE.SphereGeometry(1.6, 64, 64);
+  const sphereGeo = new THREE.SphereGeometry(1.6, 32, 32);
   const sphereMat = new THREE.MeshStandardMaterial({
     map: planetTexture,
     roughness: 0.5,
@@ -960,7 +960,7 @@ function createJupiter3DModel(anisotropy: number): THREE.Group {
   const planetMesh = new THREE.Mesh(sphereGeo, sphereMat);
   group.add(planetMesh);
 
-  const ringGeo = new THREE.RingGeometry(2.1, 3.3, 128);
+  const ringGeo = new THREE.RingGeometry(2.1, 3.3, 64);
 
   const ringCanvas = document.createElement("canvas");
   ringCanvas.width = 512;
